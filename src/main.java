@@ -13,7 +13,7 @@ class GFG {
     // Main driver method
     public static void main(String args[])
     {
-        CustomerInfo.getCustomerInfo_name();
+       String[] name= CustomerInfo.getCustomerInfo_name();
         CustomerInfo.getCustomerInfo_password();
         // Instantiating Singleton class with variable x
         Singleton x = Singleton.Singleton();
@@ -29,8 +29,9 @@ class GFG {
         x.s = (x.s).toUpperCase();
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
-        int name = reader.nextInt(); // Scans the next token of the input as an int.
-        int surname = reader.nextInt();
+        //int name = reader.nextInt(); // Scans the next token of the input as an int.
+        //int surname = reader.nextInt();
+        System.out.println(name[2]);
 
 //once finished
         reader.close();

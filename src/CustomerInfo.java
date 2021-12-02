@@ -3,16 +3,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerInfo {
-    public  static void getCustomerInfo_name() {
+    public  static String[] getCustomerInfo_name() {
+        String[] list = new String[4] ;
         try {
             File myObj = new File("C:\\Users\\Deniz Günseren\\Desktop\\sdp\\cust.txt");
             Scanner myReader = new Scanner(myObj);
-            String[] list = new String[4] ;
             int i =0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 list[i]= data;
-                System.out.println(list[i]);
+                //System.out.println(list[i]);
                 i=i+1;
                 if (i==4){break;}
             }
@@ -21,7 +21,7 @@ public class CustomerInfo {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-    }
+   return  list; }
     public  static void getCustomerInfo_password() {
         try {
             File myObj = new File("C:\\Users\\Deniz Günseren\\Desktop\\sdp\\password.txt");

@@ -14,6 +14,7 @@ class GFG {
     public static void main(String args[])
     {
         CustomerInfo.getCustomerInfo_name();
+        CustomerInfo.getCustomerInfo_password();
         // Instantiating Singleton class with variable x
         Singleton x = Singleton.Singleton();
 
@@ -28,10 +29,9 @@ class GFG {
         x.s = (x.s).toUpperCase();
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
-        System.out.println("Name: ");
         int name = reader.nextInt(); // Scans the next token of the input as an int.
         int surname = reader.nextInt();
-        
+
 //once finished
         reader.close();
 

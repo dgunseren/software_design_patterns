@@ -20,6 +20,7 @@ class Singleton {
         // To ensure only one instance is created
         if (single_instance == null) {
             single_instance = new Singleton();
+            System.out.println("Logged In");
         }
         return single_instance;
     }

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerInfo {
@@ -6,9 +7,14 @@ public class CustomerInfo {
         try {
             File myObj = new File("C:\\Users\\Deniz Günseren\\Desktop\\sdp\\cust.txt");
             Scanner myReader = new Scanner(myObj);
+            String[] list = new String[4] ;
+            int i =0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                System.out.println(data);
+                list[i]= data;
+                System.out.println(list[i]);
+                i=i+1;
+                if (i==4){break;}
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -20,9 +26,14 @@ public class CustomerInfo {
         try {
             File myObj = new File("C:\\Users\\Deniz Günseren\\Desktop\\sdp\\password.txt");
             Scanner myReader = new Scanner(myObj);
+            String[] list = new String[4] ;
+            int i =0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                System.out.println(data);
+                list[i]= data;
+                System.out.println(list[i]);
+                i=i+1;
+                if (i==4){break;}
             }
             myReader.close();
         } catch (FileNotFoundException e) {

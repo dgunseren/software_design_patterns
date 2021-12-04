@@ -5,6 +5,7 @@
 // Helper class
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -15,43 +16,29 @@ class GFG {
     // Main driver method
     public static void main(String args[])
     {
-       // Scanner name_obj = new Scanner(System.in);  // Create a Scanner object
-       // System.out.println("Enter username:");
-       // String name_user_input = name_obj.nextLine();
 
-      //  Scanner pass_obj = new Scanner(System.in);  // Create a Scanner object
-      //  System.out.println("Enter password:");
-       // String password_user_input = pass_obj.nextLine();
-
-
-       String[] name= CustomerInfo.getCustomerInfo_name();
-       String[] password= CustomerInfo.getCustomerInfo_password();
+        ArrayList<String> name= CustomerInfo.getCustomerInfo_name();
+        ArrayList<String> password= CustomerInfo.getCustomerInfo_password();
 
 
 
-        CustomerInfo.getCustomerInfo_password();
-        // Instantiating Singleton class with variable x
-        Singleton x = Singleton.Singleton();
+        Scanner reader_name = new Scanner(System.in);  // Reading from System.in
+        Scanner reader_password = new Scanner(System.in);
 
-        // Instantiating Singleton class with variable y
-        Singleton y = Singleton.Singleton();
+        System.out.print("Enter name : ");
+        String input_name = reader_name.nextLine().toLowerCase();
 
-        // instantiating Singleton class with variable z
-        Singleton z = Singleton.Singleton();
+        System.out.print("Enter password : ");
+        String input_password = reader_password.nextLine().toLowerCase();
 
-        // Now  changing variable of instance x
-        // via toUpperCase() method
-        x.s = (x.s).toUpperCase();
+        if (name.indexOf(input_name) == password.indexOf(input_password)) {
+            Singleton x = Singleton.Singleton();
+        }
+        else {
+            System.out.println("Wrong Password or User Name");
+        }
 
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-
-        System.out.println(name[2]);
-        System.out.println(password[2]);
-
-
-//once finished
-        reader.close();
+    }
 
 
     }
-}

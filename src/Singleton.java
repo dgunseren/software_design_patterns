@@ -8,10 +8,7 @@ class Singleton {
     // Constructor of this class
     // Here private constructor is is used to
     // restricted to this class itself
-    private Singleton()
-    {
-        s = "Hello I am a string part of Singleton class";
-    }
+    private Singleton() {}
 
     // Method
     // Static method to create instance of Singleton class

@@ -22,11 +22,11 @@ public class CustomerInfo {
             e.printStackTrace();
         }
    return  list; }
-    public  static void getCustomerInfo_password() {
+    public  static String[] getCustomerInfo_password() {
+        String[] list = new String[4] ;
         try {
             File myObj = new File("C:\\Users\\Deniz Günseren\\Desktop\\sdp\\password.txt");
             Scanner myReader = new Scanner(myObj);
-            String[] list = new String[4] ;
             int i =0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -40,5 +40,5 @@ public class CustomerInfo {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-    }
+   return list; }
 }

@@ -7,13 +7,28 @@
 
 import java.util.Scanner;
 
+
+
 // Class 2
 // Main class
 class GFG {
     // Main driver method
     public static void main(String args[])
     {
+       // Scanner name_obj = new Scanner(System.in);  // Create a Scanner object
+       // System.out.println("Enter username:");
+       // String name_user_input = name_obj.nextLine();
+
+      //  Scanner pass_obj = new Scanner(System.in);  // Create a Scanner object
+      //  System.out.println("Enter password:");
+       // String password_user_input = pass_obj.nextLine();
+
+
        String[] name= CustomerInfo.getCustomerInfo_name();
+       String[] password= CustomerInfo.getCustomerInfo_password();
+
+
+
         CustomerInfo.getCustomerInfo_password();
         // Instantiating Singleton class with variable x
         Singleton x = Singleton.Singleton();
@@ -29,9 +44,10 @@ class GFG {
         x.s = (x.s).toUpperCase();
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
-        //int name = reader.nextInt(); // Scans the next token of the input as an int.
-        //int surname = reader.nextInt();
+
         System.out.println(name[2]);
+        System.out.println(password[2]);
+
 
 //once finished
         reader.close();

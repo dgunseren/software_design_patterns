@@ -2,8 +2,8 @@ public class CreditAccountVisitor implements Visitor{
 
 
     @Override
-    public void visit(CashAccount cashAccount) {
-        int cash_balance = new CashAccount().cashAccountBalance();
+    public void visit(CreditAccount creditAccount) {
+        int cash_balance = new CreditAccount().cashAccountBalance();
 
         System.out.println(cash_balance);
     }

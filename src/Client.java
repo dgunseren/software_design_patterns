@@ -11,12 +11,12 @@ public class Client {
 
 
         public static void calculateBalance() {
-              CashAccount cashaccount = new CashAccount();
+              CreditAccount creditAccount = new CreditAccount();
             
 
             CreditAccountVisitor visitor = new CreditAccountVisitor();
 
-            cashaccount.accept(visitor);
+            creditAccount.accept(visitor);
 
         }
 

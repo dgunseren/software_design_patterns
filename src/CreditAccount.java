@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class CashAccount implements VisitableAccount {
+public class CreditAccount implements VisitableAccount {
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);

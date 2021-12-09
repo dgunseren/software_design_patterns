@@ -1,7 +1,4 @@
-public interface Visitor{
-    public void visit(Book book);
+public interface Visitor {
+    public void visit(CashAccount cashAccount);
 
-    //visit other concrete items
-    public void visit(CD cd);
-    public void visit(DVD dvd);
 }

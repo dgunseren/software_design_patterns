@@ -29,6 +29,29 @@ public class Client {
 
 
         }
+        if (user_preference_menu.nextInt() == 2) {
+            DebitAccountVisitor debitAccountvisitor = new DebitAccountVisitor();
+
+            Scanner user_preference_submenu = new Scanner(System.in);
+            System.out.print("What do you want to see\n1-Cash\n2-Saving\n3-Car Loan\n4-House Loan : ");
+
+            if (user_preference_submenu.nextInt() == 1) {
+                debitAccountvisitor.CashAccountBalance();
+            }
+            if (user_preference_submenu.nextInt() == 2) {
+                debitAccountvisitor.SavingAccountBalance();
+            }
+            if (user_preference_submenu.nextInt() == 3) {
+                debitAccountvisitor.CarLoanAccountBalance();
+            }
+            if (user_preference_submenu.nextInt() == 4) {
+                debitAccountvisitor.HouseLoanAccountBalance();
+            }
+
+
+
+
+        }
 
 
     }

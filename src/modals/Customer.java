@@ -14,10 +14,19 @@ public enum Customer {
     int age;
     String email;
     String password;
-    String INSERT_QUERY = "INSERT INTO people(name, surname, address, salary, age, password, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    double accountBalance;
+    String INSERT_QUERY = "INSERT INTO people(name, surname, address, salary, age, password, email, account_balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     String PASSWORD_QUERY = "SELECT * FROM people WHERE email = ?";
 
     Customer() {}
+
+    public double getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(int accountBalance) {
+        this.accountBalance = accountBalance;
+    }
 
     public String getEmail() {
         return email;
@@ -87,6 +96,7 @@ public enum Customer {
             statement.setInt(5, age);
             statement.setString(6, password);
             statement.setString(7, email);
+            statement.setDouble(8, 0);
             statement.execute();
         } catch(Exception e) {
            System.err.println(e.getMessage());
@@ -106,6 +116,7 @@ public enum Customer {
                 address = rs.getString(3);
                 salary = rs.getDouble(4);
                 age = rs.getInt(5);
+                accountBalance = rs.getDouble(9);
                 System.out.println("USER LOGGED IN SUCCESSFULLY.");
             } else {
                 System.out.println("AUTHENTICATION FAILED.");

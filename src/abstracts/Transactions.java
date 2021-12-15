@@ -2,6 +2,8 @@ package abstracts;
 
 import interfaces.TransactionAPI;
 
+import java.sql.SQLException;
+
 public abstract class Transactions {
     protected TransactionAPI transactionAPI;
 
@@ -9,5 +11,5 @@ public abstract class Transactions {
         this.transactionAPI = transactionAPI;
     }
 
-    public abstract boolean transfer();
+    public abstract boolean transfer() throws SQLException;
 }

@@ -44,10 +44,10 @@ class runner{
 //        Customer.CUSTOMER.setEmail("deniz.gunseren@ozu.edu.tr");
 //        Customer.CUSTOMER.signUp();
 
-//        Customer.CUSTOMER.setEmail("ataman.atik@ozu.edu.tr");
-//        Customer.CUSTOMER.setPassword("mypass");
-//        Customer.CUSTOMER.signIn();
-//        System.out.println(Customer.CUSTOMER.getName() + " " + Customer.CUSTOMER.getSurname() + " " + Customer.CUSTOMER.getAccountBalance());
+        Customer.CUSTOMER.setEmail("ataman.atik@ozu.edu.tr");
+        Customer.CUSTOMER.setPassword("mypass");
+        Customer.CUSTOMER.signIn();
+        System.out.println(Customer.CUSTOMER.getName() + " " + Customer.CUSTOMER.getSurname() + " " + Customer.CUSTOMER.getAccountBalance());
 
         Transactions fastTransaction = new Transaction("ataman.atik@ozu.edu.tr", "deniz.gunseren@ozu.edu.tr", 1000, new FastTransaction());
         fastTransaction.transfer();

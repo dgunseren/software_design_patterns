@@ -3,6 +3,8 @@ package modals.transactions;
 import abstracts.Transactions;
 import interfaces.TransactionAPI;
 
+import java.sql.SQLException;
+
 public class Transaction extends Transactions {
     private final String from;
     private final String to;
@@ -16,7 +18,7 @@ public class Transaction extends Transactions {
     }
 
     @Override
-    public boolean transfer() {
+    public boolean transfer() throws SQLException {
         return transactionAPI.moneyTransfer(from, to, amount);
     }
 }

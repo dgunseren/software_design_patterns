@@ -1,5 +1,6 @@
 package modals;
 
+import abstracts.AbstractLogger;
 import modals.loggers.ConsoleLogger;
 import modals.loggers.levels.LevelType;
 
@@ -7,7 +8,6 @@ public enum MoneyReserve {
 
     MONEY_RESERVE;
     int totalMoneyInReserve = 1000000;
-    ConsoleLogger logger = new ConsoleLogger();
 
     private MoneyReserve() {}
 
@@ -15,13 +15,15 @@ public enum MoneyReserve {
         return this.totalMoneyInReserve;
     }
 
-    public void addToReserve(int amount) {
+    public void addToReserve(int amount, AbstractLogger<String> logger) {
         this.totalMoneyInReserve += amount;
-        this.logger.log(LevelType.INFO, amount + " TL has been transferred to the reserve.");
+        logger.Log(amount + " TL has been transferred to the reserve.");
+        logger.Log("Now, total amount of money in the reserve is: " + this.totalMoneyInReserve);
     }
 
-    public void takeFromReserve(int amount) {
+    public void takeFromReserve(int amount, AbstractLogger<String> logger) {
         this.totalMoneyInReserve -= amount;
-        this.logger.log(LevelType.INFO, amount + " TL has been taken from the reserve.");
+        logger.Log(amount + " TL has been taken from the reserve.");
+        logger.Log("Now, total amount of money in the reserve is: " + this.totalMoneyInReserve);
     }
 }

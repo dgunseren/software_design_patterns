@@ -1,5 +1,6 @@
 package modals.accounts;
 
+import abstracts.AbstractLogger;
 import interfaces.Visitor;
 import modals.Customer;
 import modals.DBConnection;
@@ -13,10 +14,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CreditAccountVisitor implements Visitor {
+    private AbstractLogger<String> logger;
     private final Customer customer = Customer.CUSTOMER;
     private final Connection conn = DBConnection.DB_CONN.getDBConnection();
 
-    public CreditAccountVisitor() throws SQLException {
+    public CreditAccountVisitor(AbstractLogger<String> logger) throws SQLException {
+        this.logger = logger;
     }
 
     @Override
@@ -31,7 +34,9 @@ public class CreditAccountVisitor implements Visitor {
             receiverStatement.setString(1, customer.getEmail());
             ResultSet rs = receiverStatement.executeQuery();
             rs.next();
-            return rs.getDouble(1);
+            double amount = rs.getDouble(1);
+            this.logger.Log(amount + "$ IN THE CASH ACCOUNT.");
+            return amount;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING THE SERVICE. PLEASE TRY AGAIN LATER.");
             System.err.println(e.getMessage());
@@ -45,7 +50,9 @@ public class CreditAccountVisitor implements Visitor {
             receiverStatement.setString(1, customer.getEmail());
             ResultSet rs = receiverStatement.executeQuery();
             rs.next();
-            return rs.getDouble(1);
+            double amount = rs.getDouble(1);
+            this.logger.Log(amount + "$ ARE IN THE SAVING ACCOUNT.");
+            return amount;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING THE SERVICE. PLEASE TRY AGAIN LATER.");
             System.err.println(e.getMessage());
@@ -59,7 +66,9 @@ public class CreditAccountVisitor implements Visitor {
             receiverStatement.setString(1, customer.getEmail());
             ResultSet rs = receiverStatement.executeQuery();
             rs.next();
-            return rs.getDouble(1);
+            double amount = rs.getDouble(1);
+            this.logger.Log(amount + "$ IN DEBT FOR CAR.");
+            return amount;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING THE SERVICE. PLEASE TRY AGAIN LATER.");
             System.err.println(e.getMessage());
@@ -73,7 +82,9 @@ public class CreditAccountVisitor implements Visitor {
             receiverStatement.setString(1, customer.getEmail());
             ResultSet rs = receiverStatement.executeQuery();
             rs.next();
-            return rs.getDouble(1);
+            double amount = rs.getDouble(1);
+            this.logger.Log(amount + "$ IN DEBT FOR HOUSE.");
+            return amount;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING THE SERVICE. PLEASE TRY AGAIN LATER.");
             System.err.println(e.getMessage());

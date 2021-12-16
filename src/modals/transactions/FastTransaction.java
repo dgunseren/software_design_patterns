@@ -1,5 +1,6 @@
 package modals.transactions;
 
+import abstracts.AbstractLogger;
 import interfaces.TransactionAPI;
 import modals.Customer;
 import modals.DBConnection;
@@ -10,8 +11,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class FastTransaction implements TransactionAPI {
+    private AbstractLogger<String> logger;
     private String BALANCE_QUERY = "SELECT account_balance FROM people WHERE email = ?";
     private String UPDATE_QUERY = "UPDATE people SET account_balance = ? WHERE email = ?";
+
+    public FastTransaction(AbstractLogger<String> logger) {
+        this.logger = logger;
+    }
+
     @Override
     public boolean moneyTransfer(String from, String to, double amount) throws SQLException {
         if(amount > 1000) {
@@ -45,7 +52,7 @@ public class FastTransaction implements TransactionAPI {
 
             Customer.CUSTOMER.setAccountBalance(senderAmount - amount);
 
-            System.out.println("FAST TRANSACTION OCCURED WITH " + amount + " Dollars.");
+            this.logger.Log("From " + from + " FAST TRANSACTION OCCURED WITH " + amount + " Dollars to " + to);
             return true;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING TRANSACTION.");

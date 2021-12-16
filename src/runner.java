@@ -1,8 +1,11 @@
+import abstracts.AbstractLogger;
 import abstracts.Transactions;
 import modals.Customer;
 import modals.DBConnection;
 import modals.MoneyReserve;
 import modals.accounts.CreditAccountVisitor;
+import modals.loggers.ConsoleLogger;
+import modals.loggers.DatabaseLogger;
 import modals.transactions.BulkTransaction;
 import modals.transactions.FastTransaction;
 import modals.transactions.Transaction;
@@ -19,48 +22,47 @@ import java.sql.SQLException;
 class runner{
     public static void main(String args[]) throws SQLException {
         DBConnection.DB_CONN.startConnection();
+        AbstractLogger<String> logger = new ConsoleLogger();
 
-        System.out.println("Hello Java");
-        MoneyReserve.MONEY_RESERVE.addToReserve(4000);
-        System.out.println("total money in reserve " + MoneyReserve.MONEY_RESERVE.getTotalMoneyInReserve());
-        MoneyReserve.MONEY_RESERVE.takeFromReserve(2000);
-        System.out.println("total money in reserve " + MoneyReserve.MONEY_RESERVE.getTotalMoneyInReserve());
+        MoneyReserve.MONEY_RESERVE.addToReserve(4000, logger);
+        MoneyReserve.MONEY_RESERVE.takeFromReserve(2000, logger);
 
-//        Customer.CUSTOMER.setName("Atakan");
-//        Customer.CUSTOMER.setSurname("Atik");
-//        Customer.CUSTOMER.setAddress("Atasehir");
-//        Customer.CUSTOMER.setAge(24);
-//        Customer.CUSTOMER.setSalary(2400);
-//        Customer.CUSTOMER.setPassword("mypass");
-//        Customer.CUSTOMER.setEmail("ataman.atik@ozu.edu.tr");
-//        Customer.CUSTOMER.signUp();
+        logger = new DatabaseLogger();
+        Customer.CUSTOMER.setName("Atakan");
+        Customer.CUSTOMER.setSurname("Atik");
+        Customer.CUSTOMER.setAddress("Atasehir");
+        Customer.CUSTOMER.setAge(24);
+        Customer.CUSTOMER.setSalary(2400);
+        Customer.CUSTOMER.setPassword("mypass");
+        Customer.CUSTOMER.setEmail("ataman.atik@ozu.edu.tr");
+        Customer.CUSTOMER.signUp(logger);
 
 
-//        Customer.CUSTOMER.setName("Deniz");
-//        Customer.CUSTOMER.setSurname("Gunseren");
-//        Customer.CUSTOMER.setAddress("Besiktas");
-//        Customer.CUSTOMER.setAge(24);
-//        Customer.CUSTOMER.setSalary(3500);
-//        Customer.CUSTOMER.setPassword("denizpass");
-//        Customer.CUSTOMER.setEmail("deniz.gunseren@ozu.edu.tr");
-//        Customer.CUSTOMER.signUp();
+        Customer.CUSTOMER.setName("Deniz");
+        Customer.CUSTOMER.setSurname("Gunseren");
+        Customer.CUSTOMER.setAddress("Besiktas");
+        Customer.CUSTOMER.setAge(24);
+        Customer.CUSTOMER.setSalary(3500);
+        Customer.CUSTOMER.setPassword("denizpass");
+        Customer.CUSTOMER.setEmail("deniz.gunseren@ozu.edu.tr");
+        Customer.CUSTOMER.signUp(logger);
 
+        logger = new ConsoleLogger();
         Customer.CUSTOMER.setEmail("ataman.atik@ozu.edu.tr");
         Customer.CUSTOMER.setPassword("mypass");
-        Customer.CUSTOMER.signIn();
-        System.out.println(Customer.CUSTOMER.getName() + " " + Customer.CUSTOMER.getSurname() + " " + Customer.CUSTOMER.getAccountBalance());
+        Customer.CUSTOMER.signIn(logger);
 
-        CreditAccountVisitor visitor = new CreditAccountVisitor();
-        double myAccountBalance = visitor.CashAccountBalance();
-        double myHouseLoan = visitor.HouseLoanAccountBalance();
-        double myCarLoan = visitor.CarLoanAccountBalance();
-        double saving = visitor.SavingAccountBalance();
-        System.out.println("All balance sheet: " + myAccountBalance + " " + myHouseLoan + " " + myCarLoan + " " + saving);
+        CreditAccountVisitor visitor = new CreditAccountVisitor(logger);
+        visitor.CashAccountBalance();
+        visitor.HouseLoanAccountBalance();
+        visitor.CarLoanAccountBalance();
+        visitor.SavingAccountBalance();
 
-        Transactions fastTransaction = new Transaction("ataman.atik@ozu.edu.tr", "deniz.gunseren@ozu.edu.tr", 1000, new FastTransaction());
+        logger = new DatabaseLogger();
+        Transactions fastTransaction = new Transaction("ataman.atik@ozu.edu.tr", "deniz.gunseren@ozu.edu.tr", 1000, new FastTransaction(logger));
         fastTransaction.transfer();
 
-        Transactions bulkTransaction = new Transaction("ataman.atik@ozu.edu.tr", "deniz.gunseren@ozu.edu.tr", 200000, new BulkTransaction());
+        Transactions bulkTransaction = new Transaction("ataman.atik@ozu.edu.tr", "deniz.gunseren@ozu.edu.tr", 2000, new BulkTransaction(logger));
         bulkTransaction.transfer();
     }
 }

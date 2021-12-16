@@ -11,11 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CreditAccount implements VisitableAccount {
+public class CarLoanAccount implements VisitableAccount {
     private final Connection conn = DBConnection.DB_CONN.getDBConnection();
     private final Customer customer = Customer.CUSTOMER;
 
-    public CreditAccount() throws SQLException {
+    public CarLoanAccount() throws SQLException {
     }
 
     @Override
@@ -23,15 +23,15 @@ public class CreditAccount implements VisitableAccount {
         visitor.visit(this);
     }
 
-    public double displayCreditAccount(AbstractLogger<String> logger) {
-        final String BALANCE_QUERY = "SELECT account_balance FROM people WHERE email = ?";
+    public double displayCarLoan(AbstractLogger<String> logger) {
+        final String BALANCE_QUERY = "SELECT car_loan FROM people WHERE email = ?";
         try {
             PreparedStatement receiverStatement = conn.prepareStatement(BALANCE_QUERY);
             receiverStatement.setString(1, customer.getEmail());
             ResultSet rs = receiverStatement.executeQuery();
             rs.next();
             double amount = rs.getDouble(1);
-            logger.Log(amount + "$ IN THE CASH ACCOUNT.");
+            logger.Log(amount + "$ IN DEBT FOR CAR.");
             return amount;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING THE SERVICE. PLEASE TRY AGAIN LATER.");

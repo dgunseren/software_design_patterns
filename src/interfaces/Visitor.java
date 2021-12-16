@@ -1,9 +1,11 @@
 package interfaces;
 
-import modals.accounts.CreditAccount;
-import modals.accounts.DebitAccount;
+import modals.accounts.*;
 
 public interface Visitor {
-    public void visit(CreditAccount creditAccount);
-    public void visit(DebitAccount debitAccount);
+    void visit(Account account);
+    void visit(CreditAccount creditAccount);
+    void visit(CarLoanAccount carLoanAccount);
+    void visit(HouseLoanAccount houseLoanAccount);
+    void visit(SavingsAccount savingsAccount);
 }

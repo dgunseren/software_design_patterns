@@ -1,9 +1,11 @@
 import abstracts.AbstractLogger;
 import abstracts.Transactions;
+import interfaces.VisitableAccount;
 import modals.Customer;
 import modals.DBConnection;
 import modals.MoneyReserve;
-import modals.accounts.CreditAccountVisitor;
+import modals.accounts.Account;
+import modals.accounts.AccountVisitor;
 import modals.loggers.ConsoleLogger;
 import modals.loggers.DatabaseLogger;
 import modals.transactions.BulkTransaction;
@@ -52,11 +54,8 @@ class runner{
         Customer.CUSTOMER.setPassword("mypass");
         Customer.CUSTOMER.signIn(logger);
 
-        CreditAccountVisitor visitor = new CreditAccountVisitor(logger);
-        visitor.CashAccountBalance();
-        visitor.HouseLoanAccountBalance();
-        visitor.CarLoanAccountBalance();
-        visitor.SavingAccountBalance();
+        VisitableAccount account = new Account();
+        account.accept(new AccountVisitor(logger));
 
         logger = new DatabaseLogger();
         Transactions fastTransaction = new Transaction("ataman.atik@ozu.edu.tr", "deniz.gunseren@ozu.edu.tr", 1000, new FastTransaction(logger));

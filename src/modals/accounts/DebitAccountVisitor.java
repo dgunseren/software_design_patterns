@@ -1,6 +1,8 @@
+package modals.accounts;
+
+import interfaces.Visitor;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class DebitAccountVisitor implements Visitor {

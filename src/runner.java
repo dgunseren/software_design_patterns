@@ -2,6 +2,7 @@ import abstracts.Transactions;
 import modals.Customer;
 import modals.DBConnection;
 import modals.MoneyReserve;
+import modals.accounts.CreditAccountVisitor;
 import modals.transactions.BulkTransaction;
 import modals.transactions.FastTransaction;
 import modals.transactions.Transaction;
@@ -48,6 +49,13 @@ class runner{
         Customer.CUSTOMER.setPassword("mypass");
         Customer.CUSTOMER.signIn();
         System.out.println(Customer.CUSTOMER.getName() + " " + Customer.CUSTOMER.getSurname() + " " + Customer.CUSTOMER.getAccountBalance());
+
+        CreditAccountVisitor visitor = new CreditAccountVisitor();
+        double myAccountBalance = visitor.CashAccountBalance();
+        double myHouseLoan = visitor.HouseLoanAccountBalance();
+        double myCarLoan = visitor.CarLoanAccountBalance();
+        double saving = visitor.SavingAccountBalance();
+        System.out.println("All balance sheet: " + myAccountBalance + " " + myHouseLoan + " " + myCarLoan + " " + saving);
 
         Transactions fastTransaction = new Transaction("ataman.atik@ozu.edu.tr", "deniz.gunseren@ozu.edu.tr", 1000, new FastTransaction());
         fastTransaction.transfer();

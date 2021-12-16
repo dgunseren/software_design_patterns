@@ -1,4 +1,6 @@
-import java.util.List;
+package interfaces;
+
+import interfaces.Visitor;
 
 public interface VisitableAccount {
     void accept(Visitor visitor);

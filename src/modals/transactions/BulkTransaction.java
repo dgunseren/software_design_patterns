@@ -20,10 +20,10 @@ public class BulkTransaction implements TransactionAPI {
     }
 
     @Override
-    public boolean moneyTransfer(String from, String to, double amount) throws SQLException {
+    public boolean moneyTransfer(Customer customer, String to, double amount) throws SQLException {
         Connection conn = DBConnection.DB_CONN.getDBConnection();
         try {
-            double senderAmount = Customer.CUSTOMER.getAccountBalance();
+            double senderAmount = customer.getAccountBalance();
 
             if(amount > senderAmount) {
                 System.out.println("NOT ENOUGH MONEY ON YOUR ACCOUNT TO SEND THIS AMOUNT.");
@@ -43,12 +43,12 @@ public class BulkTransaction implements TransactionAPI {
 
             PreparedStatement paymentStatement = conn.prepareStatement(UPDATE_QUERY);
             paymentStatement.setDouble(1, senderAmount - amount);
-            paymentStatement.setString(2, from);
+            paymentStatement.setString(2, customer.getEmail());
             paymentStatement.execute();
 
-            Customer.CUSTOMER.setAccountBalance(senderAmount - amount);
+            customer.setAccountBalance(senderAmount - amount);
 
-            this.logger.Log("FROM " + from + " BULK TRANSACTION OCCURED WITH " + amount + " Dollars to " + to);
+            this.logger.Log("FROM " + customer.getEmail() + " BULK TRANSACTION OCCURED WITH " + amount + " Dollars to " + to);
             return true;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING TRANSACTION.");

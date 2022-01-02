@@ -20,14 +20,14 @@ public class FastTransaction implements TransactionAPI {
     }
 
     @Override
-    public boolean moneyTransfer(String from, String to, double amount) throws SQLException {
+    public boolean moneyTransfer(Customer customer, String to, double amount) throws SQLException {
         if(amount > 1000) {
             System.out.println("FAST TRANSACTION FAILED. CANNOT PASS 1000$ LIMIT.");
             return false;
         }
         Connection conn = DBConnection.DB_CONN.getDBConnection();
         try {
-            double senderAmount = Customer.CUSTOMER.getAccountBalance();
+            double senderAmount = customer.getAccountBalance();
 
             if(amount > senderAmount) {
                 System.out.println("NOT ENOUGH MONEY ON YOUR ACCOUNT TO SEND THIS AMOUNT.");
@@ -47,12 +47,12 @@ public class FastTransaction implements TransactionAPI {
 
             PreparedStatement paymentStatement = conn.prepareStatement(UPDATE_QUERY);
             paymentStatement.setDouble(1, senderAmount - amount);
-            paymentStatement.setString(2, from);
+            paymentStatement.setString(2, customer.getEmail());
             paymentStatement.execute();
 
-            Customer.CUSTOMER.setAccountBalance(senderAmount - amount);
+            customer.setAccountBalance(senderAmount - amount);
 
-            this.logger.Log("From " + from + " FAST TRANSACTION OCCURED WITH " + amount + " Dollars to " + to);
+            this.logger.Log("From " + customer.getEmail() + " FAST TRANSACTION OCCURED WITH " + amount + " Dollars to " + to);
             return true;
         } catch(Exception e) {
             System.out.println("AN ERROR OCCURED DURING TRANSACTION.");

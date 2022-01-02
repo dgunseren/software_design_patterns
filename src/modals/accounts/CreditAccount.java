@@ -13,7 +13,6 @@ import java.sql.SQLException;
 
 public class CreditAccount implements VisitableAccount {
     private final Connection conn = DBConnection.DB_CONN.getDBConnection();
-    private final Customer customer = Customer.CUSTOMER;
 
     public CreditAccount() throws SQLException {
     }
@@ -23,7 +22,7 @@ public class CreditAccount implements VisitableAccount {
         visitor.visit(this);
     }
 
-    public double displayCreditAccount(AbstractLogger<String> logger) {
+    public double displayCreditAccount(Customer customer, AbstractLogger<String> logger) {
         final String BALANCE_QUERY = "SELECT account_balance FROM people WHERE email = ?";
         try {
             PreparedStatement receiverStatement = conn.prepareStatement(BALANCE_QUERY);

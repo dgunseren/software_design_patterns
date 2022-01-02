@@ -1,90 +1,38 @@
 package modals;
 
 import abstracts.AbstractLogger;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public enum Customer {
-    CUSTOMER;
-    String name;
-    String surname;
-    String address;
-    double salary;
-    int age;
-    String email;
-    String password;
-    double accountBalance;
+public class Customer {
+    private String name;
+    private String surname;
+    private String address;
+    private String email;
+    private String password;
+    private double salary;
+    private double accountBalance;
+    private int age;
     String INSERT_QUERY = "INSERT INTO people(name, surname, address, salary, age, password, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
     String PASSWORD_QUERY = "SELECT * FROM people WHERE email = ?";
 
-    Customer() {}
-
-    public double getAccountBalance() {
-        return accountBalance;
+    private Customer(Builder builder) {
+        this.name = builder.name;
+        this.surname = builder.surname;
+        this.address = builder.address;
+        this.email = builder.email;
+        this.password = builder.password;
+        this.salary = builder.salary;
+        this.accountBalance = builder.accountBalance;
+        this.age = builder.age;
     }
 
-    public void setAccountBalance(double accountBalance) {
-        this.accountBalance = accountBalance;
-    }
+    public String getEmail() { return this.email; }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public double getAccountBalance() { return this.accountBalance; }
+    public void setAccountBalance(double accountBalance) { this.accountBalance = accountBalance; }
 
     public void signUp(AbstractLogger<String> logger) throws SQLException {
         Connection conn = DBConnection.DB_CONN.getDBConnection();
@@ -104,7 +52,7 @@ public enum Customer {
         }
     }
 
-    public void signIn(AbstractLogger<String> logger) throws SQLException {
+    public Customer signIn(AbstractLogger<String> logger) throws SQLException {
         Connection conn = DBConnection.DB_CONN.getDBConnection();
         try {
             PreparedStatement statement = conn.prepareStatement(PASSWORD_QUERY);
@@ -119,11 +67,67 @@ public enum Customer {
                 age = rs.getInt(5);
                 accountBalance = rs.getDouble(9);
                 logger.Log("USER WITH EMAIL " + email + " SIGNED IN SUCCESSFULLY.");
+                return this;
             } else {
                 System.out.println("AUTHENTICATION FAILED.");
+                return null;
             }
         } catch(Exception e) {
             System.err.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static class Builder {
+        private String name;
+        private String surname;
+        private String address;
+        private final String email;
+        private final String password;
+        private double salary;
+        private double accountBalance;
+        private int age;
+
+        public Builder(String email, String password) {
+            if(email == null || password == null) {
+                throw new IllegalArgumentException("Please fill the mandatory fields correctly.");
+            }
+            this.email = email;
+            this.password = password;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withSurname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public Builder withAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder withAge(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public Builder withSalary(double salary) {
+            this.salary = salary;
+            return this;
+        }
+
+        public Builder withAccountBalance(double accountBalance) {
+            this.accountBalance = accountBalance;
+            return this;
+        }
+
+        public Customer build() {
+            return new Customer(this);
         }
     }
 }

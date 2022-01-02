@@ -2,12 +2,15 @@ package modals.accounts;
 
 import abstracts.AbstractLogger;
 import interfaces.Visitor;
+import modals.Customer;
 
 public class AccountVisitor implements Visitor {
     private AbstractLogger<String> logger;
+    private Customer customer;
 
-    public AccountVisitor(AbstractLogger<String> logger) {
+    public AccountVisitor(Customer customer, AbstractLogger<String> logger) {
         this.logger = logger;
+        this.customer = customer;
     }
 
     @Override
@@ -15,21 +18,21 @@ public class AccountVisitor implements Visitor {
 
     @Override
     public void visit(CreditAccount creditAccount) {
-        creditAccount.displayCreditAccount(this.logger);
+        creditAccount.displayCreditAccount(this.customer, this.logger);
     }
 
     @Override
     public void visit(CarLoanAccount carLoanAccount) {
-        carLoanAccount.displayCarLoan(this.logger);
+        carLoanAccount.displayCarLoan(this.customer, this.logger);
     }
 
     @Override
     public void visit(HouseLoanAccount houseLoanAccount) {
-        houseLoanAccount.displayHouseLoan(this.logger);
+        houseLoanAccount.displayHouseLoan(this.customer, this.logger);
     }
 
     @Override
     public void visit(SavingsAccount savingsAccount) {
-        savingsAccount.displaySaving(this.logger);
+        savingsAccount.displaySaving(this.customer, this.logger);
     }
 }

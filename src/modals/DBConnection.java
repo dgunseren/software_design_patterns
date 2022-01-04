@@ -12,7 +12,7 @@ public enum DBConnection {
 
     public void startConnection() {
         try {
-            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bankingapi", "postgres", "postgre");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bankingapi", "postgres", "postgres");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

@@ -13,14 +13,6 @@ import modals.transactions.FastTransaction;
 import modals.transactions.Transaction;
 import java.sql.SQLException;
 
-/*
-    LET'S WRITE WHICH DESIGN PATTERN USED IN WHICH PART OF THE SYSTEM
-    MoneyReserve -> Singleton
-    Logger -> Template Method
-    Customer -> Singleton
-    Monetary Transactions -> Bridge
-* */
-
 class runner{
     public static void main(String[] args) throws SQLException {
         DBConnection.DB_CONN.startConnection();
@@ -51,15 +43,14 @@ class runner{
         bulkTransaction.transfer();
 
         ATMDispenseChain atmDispenser = new ATMDispenseChain();
-        atmDispenser.c1.dispense(new Currency(1560));
+        atmDispenser.c1.dispense(1560);
+        atakanLogsIn.setAccountBalance(atakanLogsIn.getAccountBalance() - 1560);
 
         Capital capital = new Capital();
         new EuroObserver(capital);
         new DollarObserver(capital);
 
         System.out.println("Your Balance :");
-        capital.setAmount(1000);
-
-
+        capital.setAmount(atakanLogsIn.getAccountBalance());
     }
 }

@@ -17,6 +17,7 @@ public class Customer {
     private int age;
     String INSERT_QUERY = "INSERT INTO people(name, surname, address, salary, age, password, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
     String PASSWORD_QUERY = "SELECT * FROM people WHERE email = ?";
+    String UPDATE_ACCOUNT_BALANCE_QUERY = "UPDATE people SET account_balance = ? WHERE email = ?";
 
     private Customer(Builder builder) {
         this.name = builder.name;
@@ -32,7 +33,18 @@ public class Customer {
     public String getEmail() { return this.email; }
 
     public double getAccountBalance() { return this.accountBalance; }
-    public void setAccountBalance(double accountBalance) { this.accountBalance = accountBalance; }
+    public void setAccountBalance(double accountBalance) throws SQLException {
+        this.accountBalance = accountBalance;
+        Connection conn = DBConnection.DB_CONN.getDBConnection();
+        try {
+            PreparedStatement statement = conn.prepareStatement(UPDATE_ACCOUNT_BALANCE_QUERY);
+            statement.setDouble(1, accountBalance);
+            statement.setString(2,email);
+            statement.execute();
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     public void signUp(AbstractLogger<String> logger) throws SQLException {
         Connection conn = DBConnection.DB_CONN.getDBConnection();

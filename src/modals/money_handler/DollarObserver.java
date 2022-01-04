@@ -1,4 +1,8 @@
-public class DollarObserver extends Observer{
+package modals.money_handler;
+
+import abstracts.Observer;
+
+public class DollarObserver extends Observer {
     private double rate = 0.074;
     public DollarObserver(Capital capital) {
         this.capital = capital;

@@ -3,7 +3,7 @@ import abstracts.Transactions;
 import interfaces.VisitableAccount;
 import modals.Customer;
 import modals.DBConnection;
-import modals.MoneyReserve;
+import modals.money_handler.*;
 import modals.accounts.Account;
 import modals.accounts.AccountVisitor;
 import modals.loggers.ConsoleLogger;
@@ -49,5 +49,17 @@ class runner{
 
         Transactions bulkTransaction = new Transaction(atakanLogsIn, "deniz.gunseren@ozu.edu.tr", 2000, new BulkTransaction(logger));
         bulkTransaction.transfer();
+
+        ATMDispenseChain atmDispenser = new ATMDispenseChain();
+        atmDispenser.c1.dispense(new Currency(1560));
+
+        Capital capital = new Capital();
+        new EuroObserver(capital);
+        new DollarObserver(capital);
+
+        System.out.println("Your Balance :");
+        capital.setAmount(1000);
+
+
     }
 }

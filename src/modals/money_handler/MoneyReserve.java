@@ -1,8 +1,6 @@
-package modals;
+package modals.money_handler;
 
 import abstracts.AbstractLogger;
-import modals.loggers.ConsoleLogger;
-import modals.loggers.levels.LevelType;
 
 public enum MoneyReserve {
 

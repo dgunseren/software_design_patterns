@@ -1,3 +1,5 @@
+package modals.money_handler;
+
 public class Currency {
 
     private int amount;

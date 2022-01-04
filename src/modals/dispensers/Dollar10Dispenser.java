@@ -1,3 +1,8 @@
+package modals.dispensers;
+
+import interfaces.DispenseChain;
+import modals.money_handler.Currency;
+
 public class Dollar10Dispenser implements DispenseChain {
 
     private DispenseChain chain;

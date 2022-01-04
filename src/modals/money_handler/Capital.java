@@ -1,3 +1,7 @@
+package modals.money_handler;
+
+import abstracts.Observer;
+
 import java.util.ArrayList;
 import java.util.List;
 

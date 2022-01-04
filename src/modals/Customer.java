@@ -1,12 +1,14 @@
 package modals;
 
 import abstracts.AbstractLogger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Customer {
+
     private String name;
     private String surname;
     private String address;

@@ -1,13 +1,16 @@
 package views;
 
+import controllers.MainMenuController;
 import modals.Customer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class MainMenuView extends JFrame implements ActionListener {
+    private String accountSummary = "";
     private final JFrame frame = new JFrame("frame");
     private final Container container = getContentPane();
     private final JLabel welcomeText = new JLabel("");
@@ -61,11 +64,18 @@ public class MainMenuView extends JFrame implements ActionListener {
        age.setText("AGE: " + Integer.toString(customer.getAge()));
     }
 
+    public String updateCustomerAccountSummary(double[] summary) {
+        for(double balance: summary) {
+            accountSummary += Double.toString(balance) + " ";
+        }
+        return accountSummary;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == balance_button) {
-
+            JOptionPane.showMessageDialog(this, accountSummary);
         }
         else if (e.getSource() == transfer_button) {
 

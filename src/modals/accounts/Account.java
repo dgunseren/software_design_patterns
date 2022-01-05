@@ -3,13 +3,15 @@ package modals.accounts;
 import modals.interfaces.VisitableAccount;
 import modals.interfaces.Visitor;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Account implements VisitableAccount {
+public class Account {
 
     VisitableAccount[] accounts;
+    double[] accountSummary = new double[4];
 
-    public Account() throws SQLException {
+    public Account() {
         accounts = new VisitableAccount[] {
                 new CreditAccount(),
                 new CarLoanAccount(),
@@ -18,11 +20,10 @@ public class Account implements VisitableAccount {
         };
     }
 
-    @Override
-    public void accept(Visitor visitor) {
+    public double[] accept(Visitor visitor) {
         for(int i = 0; i < accounts.length; i++) {
-            accounts[i].accept(visitor);
+            accountSummary[i] = accounts[i].accept(visitor);
         }
-        visitor.visit(this);
+        return accountSummary;
     }
 }

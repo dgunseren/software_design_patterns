@@ -3,9 +3,8 @@ package modals.interfaces;
 import modals.accounts.*;
 
 public interface Visitor {
-    void visit(Account account);
-    void visit(CreditAccount creditAccount);
-    void visit(CarLoanAccount carLoanAccount);
-    void visit(HouseLoanAccount houseLoanAccount);
-    void visit(SavingsAccount savingsAccount);
+    double visit(CreditAccount creditAccount);
+    double visit(CarLoanAccount carLoanAccount);
+    double visit(HouseLoanAccount houseLoanAccount);
+    double visit(SavingsAccount savingsAccount);
 }

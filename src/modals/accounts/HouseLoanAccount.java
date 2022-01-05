@@ -12,14 +12,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class HouseLoanAccount implements VisitableAccount {
-    private final Connection conn = DBConnection.DB_CONN.getDBConnection();
+    private Connection conn;
 
-    public HouseLoanAccount() throws SQLException {
+    public HouseLoanAccount() {
+        try {
+            conn = DBConnection.DB_CONN.getDBConnection();
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
+    public double accept(Visitor visitor) {
+        return visitor.visit(this);
     }
 
     public double displayHouseLoan(Customer customer, AbstractLogger<String> logger) {

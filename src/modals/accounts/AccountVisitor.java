@@ -14,25 +14,22 @@ public class AccountVisitor implements Visitor {
     }
 
     @Override
-    public void visit(Account account) {}
-
-    @Override
-    public void visit(CreditAccount creditAccount) {
-        creditAccount.displayCreditAccount(this.customer, this.logger);
+    public double visit(CreditAccount creditAccount) {
+        return creditAccount.displayCreditAccount(this.customer, this.logger);
     }
 
     @Override
-    public void visit(CarLoanAccount carLoanAccount) {
-        carLoanAccount.displayCarLoan(this.customer, this.logger);
+    public double visit(CarLoanAccount carLoanAccount) {
+        return carLoanAccount.displayCarLoan(this.customer, this.logger);
     }
 
     @Override
-    public void visit(HouseLoanAccount houseLoanAccount) {
-        houseLoanAccount.displayHouseLoan(this.customer, this.logger);
+    public double visit(HouseLoanAccount houseLoanAccount) {
+        return houseLoanAccount.displayHouseLoan(this.customer, this.logger);
     }
 
     @Override
-    public void visit(SavingsAccount savingsAccount) {
-        savingsAccount.displaySaving(this.customer, this.logger);
+    public double visit(SavingsAccount savingsAccount) {
+        return savingsAccount.displaySaving(this.customer, this.logger);
     }
 }

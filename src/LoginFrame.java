@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class LoginFrame extends JFrame implements ActionListener {
-
+    public static Customer atakanLogsIn;
+    public static Customer denizLogsIn;
 
 
 
@@ -23,6 +24,8 @@ public class LoginFrame extends JFrame implements ActionListener {
     JButton loginButton = new JButton("LOGIN");
     JButton resetButton = new JButton("RESET");
     //JCheckBox showPassword = new JCheckBox("Show Password");
+
+
 
 
     LoginFrame() {
@@ -58,6 +61,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         //container.add(showPassword);
         container.add(loginButton);
         container.add(resetButton);
+
     }
 
     public void addActionEvent() {
@@ -89,6 +93,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             userText = userTextField.getText();
             pwdText = passwordField.getText();
             if (userText.equalsIgnoreCase("deniz.gunseren@ozu.edu.tr") && pwdText.equalsIgnoreCase("denizpass")) {
+
                 Customer deniz = new Customer.Builder("deniz.gunseren@ozu.edu.tr", "denizpass")
                         .withName("Deniz").withSurname("Gunseren").withAddress("Besiktas").withSalary(3500).withAge(24).build();
 
@@ -111,10 +116,14 @@ public class LoginFrame extends JFrame implements ActionListener {
 
                 Customer atakan = new Customer.Builder("ataman.atik@ozu.edu.tr", "mypass")
                         .withName("Atakan").withSurname("Atik").withAddress("Atasehir").withSalary(2400).withAge(24).build();
+
                 try {
+
                     atakan.signUp(logger);
                     JOptionPane.showMessageDialog(this, "Login Successful");
 
+                    logger = new ConsoleLogger();
+                    atakanLogsIn = new Customer.Builder("ataman.atik@ozu.edu.tr", "mypass").build().signIn(logger);
 
                     Menu frame = new Menu();
                     frame.setTitle("Main Menu");

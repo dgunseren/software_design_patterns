@@ -1,7 +1,14 @@
+import abstracts.AbstractLogger;
+import interfaces.VisitableAccount;
+import modals.accounts.Account;
+import modals.accounts.AccountVisitor;
+import modals.loggers.ConsoleLogger;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class Menu extends JFrame implements ActionListener {
 
@@ -54,6 +61,9 @@ public class Menu extends JFrame implements ActionListener {
 
 
 
+
+
+
     }
 
     public void addComponentsToContainer() {
@@ -85,6 +95,16 @@ public class Menu extends JFrame implements ActionListener {
 
         //Coding Part of LOGIN button
         if (e.getSource() == balance_button) {
+            try {
+                AbstractLogger<String> logger = new ConsoleLogger();
+
+                VisitableAccount   account = new Account();
+                account.accept(new AccountVisitor(LoginFrame.atakanLogsIn, logger));
+                String string = new String("derj");
+                JOptionPane.showMessageDialog(this, string);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
 
         } else {
         }
@@ -92,6 +112,12 @@ public class Menu extends JFrame implements ActionListener {
 
         //Coding Part of RESET button
         if (e.getSource() == transfer_button) {
+            MonetaryTransaction monet = new MonetaryTransaction();
+            monet.setTitle("Login Form");
+            monet.setVisible(true);
+            monet.setBounds(10, 10, 370, 600);
+            monet.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            monet.setResizable(false);
         } else {
         }
 

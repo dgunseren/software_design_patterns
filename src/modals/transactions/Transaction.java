@@ -1,7 +1,7 @@
 package modals.transactions;
 
-import abstracts.Transactions;
-import interfaces.TransactionAPI;
+import modals.abstracts.Transactions;
+import modals.interfaces.TransactionAPI;
 import modals.Customer;
 
 import java.sql.SQLException;

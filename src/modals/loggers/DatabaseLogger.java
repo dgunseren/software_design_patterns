@@ -1,6 +1,6 @@
 package modals.loggers;
 
-import abstracts.AbstractLogger;
+import modals.abstracts.AbstractLogger;
 import modals.DBConnection;
 import modals.loggers.levels.LevelType;
 
@@ -10,9 +10,14 @@ import java.sql.SQLException;
 
 public class DatabaseLogger extends AbstractLogger<String> {
     private final String LOG_QUERY = "INSERT INTO logs(operation) VALUES (?)";
-    private final Connection conn = DBConnection.DB_CONN.getDBConnection();
+    private Connection conn;
 
-    public DatabaseLogger() throws SQLException {
+    public DatabaseLogger() {
+        try {
+            conn = DBConnection.DB_CONN.getDBConnection();
+        } catch(SQLException sqlException) {
+            System.err.println(sqlException.getMessage());
+        }
     }
 
     @Override

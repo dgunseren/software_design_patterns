@@ -1,6 +1,6 @@
 package modals;
 
-import abstracts.AbstractLogger;
+import modals.abstracts.AbstractLogger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,9 +48,9 @@ public class Customer {
         }
     }
 
-    public void signUp(AbstractLogger<String> logger) throws SQLException {
-        Connection conn = DBConnection.DB_CONN.getDBConnection();
+    public boolean signUp(AbstractLogger<String> logger) {
         try {
+            Connection conn = DBConnection.DB_CONN.getDBConnection();
             PreparedStatement statement = conn.prepareStatement(INSERT_QUERY);
             statement.setString(1, name);
             statement.setString(2, surname);
@@ -61,14 +61,16 @@ public class Customer {
             statement.setString(7, email);
             statement.execute();
             logger.Log("USER " + name + " " + surname + " SIGNED UP SUCCESSFULLY.");
-        } catch(Exception e) {
-           System.err.println(e.getMessage());
+            return true;
+        } catch(Exception sqlException) {
+            System.err.println(sqlException.getMessage());
+            return false;
         }
     }
 
-    public Customer signIn(AbstractLogger<String> logger) throws SQLException {
-        Connection conn = DBConnection.DB_CONN.getDBConnection();
+    public Customer signIn(AbstractLogger<String> logger) {
         try {
+            Connection conn = DBConnection.DB_CONN.getDBConnection();
             PreparedStatement statement = conn.prepareStatement(PASSWORD_QUERY);
             statement.setString(1,email);
             ResultSet rs = statement.executeQuery();

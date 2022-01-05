@@ -1,7 +1,7 @@
 package modals.transactions;
 
-import abstracts.AbstractLogger;
-import interfaces.TransactionAPI;
+import modals.abstracts.AbstractLogger;
+import modals.interfaces.TransactionAPI;
 import modals.Customer;
 import modals.DBConnection;
 

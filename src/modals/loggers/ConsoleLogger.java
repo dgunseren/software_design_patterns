@@ -1,6 +1,6 @@
 package modals.loggers;
 
-import abstracts.AbstractLogger;
+import modals.abstracts.AbstractLogger;
 import modals.loggers.levels.LevelType;
 
 public class ConsoleLogger extends AbstractLogger<String> {

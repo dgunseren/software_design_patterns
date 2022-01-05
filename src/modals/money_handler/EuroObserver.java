@@ -1,6 +1,6 @@
 package modals.money_handler;
 
-import abstracts.Observer;
+import modals.abstracts.Observer;
 
 public class EuroObserver extends Observer {
     private double rate = 0.06523157208;

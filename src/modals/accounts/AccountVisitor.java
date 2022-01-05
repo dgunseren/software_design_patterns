@@ -1,7 +1,7 @@
 package modals.accounts;
 
-import abstracts.AbstractLogger;
-import interfaces.Visitor;
+import modals.abstracts.AbstractLogger;
+import modals.interfaces.Visitor;
 import modals.Customer;
 
 public class AccountVisitor implements Visitor {

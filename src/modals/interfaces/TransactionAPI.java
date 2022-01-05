@@ -1,4 +1,4 @@
-package interfaces;
+package modals.interfaces;
 
 import modals.Customer;
 

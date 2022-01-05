@@ -1,6 +1,6 @@
 package modals.dispensers;
 
-import interfaces.DispenseChain;
+import modals.interfaces.DispenseChain;
 
 public class Dollar20Dispenser implements DispenseChain {
 

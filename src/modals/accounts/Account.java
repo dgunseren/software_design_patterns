@@ -1,7 +1,7 @@
 package modals.accounts;
 
-import interfaces.VisitableAccount;
-import interfaces.Visitor;
+import modals.interfaces.VisitableAccount;
+import modals.interfaces.Visitor;
 
 import java.sql.SQLException;
 

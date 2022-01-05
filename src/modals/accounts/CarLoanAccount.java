@@ -1,8 +1,8 @@
 package modals.accounts;
 
-import abstracts.AbstractLogger;
-import interfaces.VisitableAccount;
-import interfaces.Visitor;
+import modals.abstracts.AbstractLogger;
+import modals.interfaces.VisitableAccount;
+import modals.interfaces.Visitor;
 import modals.Customer;
 import modals.DBConnection;
 

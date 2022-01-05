@@ -1,4 +1,4 @@
-package abstracts;
+package modals.abstracts;
 
 import modals.money_handler.Capital;
 

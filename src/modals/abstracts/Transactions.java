@@ -1,6 +1,6 @@
-package abstracts;
+package modals.abstracts;
 
-import interfaces.TransactionAPI;
+import modals.interfaces.TransactionAPI;
 
 import java.sql.SQLException;
 

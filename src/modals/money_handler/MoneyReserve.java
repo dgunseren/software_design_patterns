@@ -1,6 +1,6 @@
 package modals.money_handler;
 
-import abstracts.AbstractLogger;
+import modals.abstracts.AbstractLogger;
 
 public enum MoneyReserve {
 

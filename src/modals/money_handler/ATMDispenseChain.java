@@ -1,6 +1,6 @@
 package modals.money_handler;
 
-import interfaces.DispenseChain;
+import modals.interfaces.DispenseChain;
 import modals.dispensers.Dollar10Dispenser;
 import modals.dispensers.Dollar20Dispenser;
 import modals.dispensers.Dollar50Dispenser;

@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
 public class SignUpView extends JFrame implements ActionListener {
@@ -84,7 +85,10 @@ public class SignUpView extends JFrame implements ActionListener {
             Customer customer = new Customer.Builder(email, password).withName(name).withSurname(surname)
                     .withAge(Integer.parseInt(age)).withAddress(address).build();
             SignUpController signUpController = new SignUpController(this, customer);
-            signUpController.SignUpHandler();
+            if(signUpController.SignUpHandler()) {
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                new LoginView();
+            }
         }
     }
 }

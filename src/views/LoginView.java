@@ -1,6 +1,7 @@
 package views;
 
 import controllers.LoginController;
+import controllers.MainMenuController;
 import modals.Customer;
 
 import javax.swing.*;
@@ -56,13 +57,20 @@ public class LoginView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton) {
             String email = userTextField.getText();
-            String password = Arrays.toString(passwordField.getPassword());
+            String password = passwordField.getText();
             Customer customer = new Customer.Builder(email, password).build();
             LoginController loginController = new LoginController(this, customer);
-            loginController.SignInHandler();
+            customer = loginController.SignInHandler();
+            if(customer == null) {
+                JOptionPane.showMessageDialog(this, "Authentication FAILED.");
+            } else {
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                MainMenuView mainMenuView = new MainMenuView();
+                new MainMenuController(customer, mainMenuView);
+            }
         }
         else if(e.getSource() == signUpButton) {
-            frame.setVisible(false);
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             new SignUpView();
         }
     }

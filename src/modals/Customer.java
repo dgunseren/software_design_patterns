@@ -33,6 +33,10 @@ public class Customer {
     }
 
     public String getEmail() { return this.email; }
+    public String getName() { return this.name; }
+    public String getSurname() { return this.surname; }
+    public int getAge() { return this.age; }
+    public String getAddress() { return this.address; }
 
     public double getAccountBalance() { return this.accountBalance; }
     public void setAccountBalance(double accountBalance) throws SQLException {

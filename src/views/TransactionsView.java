@@ -24,6 +24,7 @@ public class TransactionsView extends JFrame implements ActionListener {
 
     public TransactionsView(Customer customer) {
         this.customer = customer;
+        System.out.println(customer.getEmail());
         setLocationAndSize();
         addComponentsToPanel();
         addActionListenersToButtons();
@@ -60,9 +61,9 @@ public class TransactionsView extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String to = toField.getText();
-        int amount = Integer.parseInt(amountField.getText());
         if(e.getSource() == fastTransferButton) {
+            String to = toField.getText();
+            int amount = Integer.parseInt(amountField.getText());
             TransactionsController controller = new TransactionsController(customer, this);
             if(controller.handleFastTransfer(to, amount)) {
                 JOptionPane.showMessageDialog(this, "FAST TRANSACTION SENT.");
@@ -71,6 +72,8 @@ public class TransactionsView extends JFrame implements ActionListener {
             }
         }
         else if(e.getSource() == bulkTransferButton) {
+            String to = toField.getText();
+            int amount = Integer.parseInt(amountField.getText());
             TransactionsController controller = new TransactionsController(customer, this);
             if(controller.handleBulkTransfer(to, amount)){
                 JOptionPane.showMessageDialog(this, "FAST TRANSACTION SENT.");
@@ -80,7 +83,8 @@ public class TransactionsView extends JFrame implements ActionListener {
         }
         else if(e.getSource() == backButton) {
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            new MainMenuView(customer);
+            MainMenuView mainMenuView = new MainMenuView(customer);
+            MainMenuController mainMenuController = new MainMenuController(customer, mainMenuView);
         }
     }
 }

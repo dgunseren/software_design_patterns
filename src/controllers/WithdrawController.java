@@ -1,10 +1,16 @@
 package controllers;
 
 import modals.Customer;
+import modals.abstracts.AbstractLogger;
+import modals.loggers.ConsoleLogger;
 import modals.money_handler.ATMDispenseChain;
+import modals.money_handler.MoneyReserve;
+import views.MainMenuView;
 import views.WithdrawView;
 
+
 public class WithdrawController {
+    AbstractLogger<String> logger = new ConsoleLogger();
     private Customer customer;
     private WithdrawView withdrawView;
 
@@ -17,5 +23,7 @@ public class WithdrawController {
         ATMDispenseChain atmDispenser = new ATMDispenseChain();
         atmDispenser.c1.dispense(amount);
         customer.setAccountBalance(customer.getAccountBalance() - amount);
+        MoneyReserve.MONEY_RESERVE.takeFromReserve(amount, logger);
+        withdrawView.updateCustomer(customer);
     }
 }

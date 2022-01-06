@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class WithdrawView extends JFrame implements ActionListener {
-    private final Customer customer;
+    private Customer customer;
     private final JFrame frame = new JFrame("frame");
     private final Container container = new Container();
     private final JButton withdrawButton = new JButton("WITHDRAW");
@@ -28,6 +28,10 @@ public class WithdrawView extends JFrame implements ActionListener {
         frame.add(container);
         frame.setSize(500,500);
         frame.setVisible(true);
+    }
+
+    public void updateCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     private void addComponentsToPanel() {
@@ -51,15 +55,17 @@ public class WithdrawView extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int amount = Integer.parseInt(amountField.getText());
         if(e.getSource() == withdrawButton) {
+            int amount = Integer.parseInt(amountField.getText());
             WithdrawController withdrawController = new WithdrawController(customer, this);
             withdrawController.handleWithdraw(amount);
             JOptionPane.showMessageDialog(this, amountField.getText() + " WITHDRAWED FROM YOUR ACCOUNT SUCCESSFULLY.");
         }
         else if(e.getSource() == backButton) {
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            new MainMenuView(customer);
+            MainMenuView mainMenuView = new MainMenuView(customer);
+            MainMenuController mainMenuController = new MainMenuController(customer, mainMenuView);
+            mainMenuController.updateView();
         }
     }
 }

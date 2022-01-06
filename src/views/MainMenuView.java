@@ -15,7 +15,7 @@ import java.util.List;
 public class MainMenuView extends JFrame implements ActionListener {
     private final Customer customer;
     private String accountSummary = "";
-    private final JFrame frame = new JFrame("frame");
+    private final JFrame frame = new JFrame("Bank");
     private final Container container = getContentPane();
     private final JLabel welcomeText = new JLabel("");
     private final JLabel address = new JLabel("");
@@ -70,8 +70,35 @@ public class MainMenuView extends JFrame implements ActionListener {
     }
 
     public String updateCustomerAccountSummary(double[] summary) {
+        int i = 0 ;
         for(double balance: summary) {
-            accountSummary += Double.toString(balance) + " ";
+
+            if (i==0){
+                accountSummary += "Account Balance: " + Double.toString(balance) + "\n" ;
+
+            }
+
+           else if (i==1){
+                accountSummary += "Car Loan : " + Double.toString(balance) + "\n" ;
+
+            }
+            else if (i==2){
+                accountSummary += "House Loan : " + Double.toString(balance) + "\n" ;
+
+            }
+            else if (i==3){
+                accountSummary += "Savings : " + Double.toString(balance) + "\n" ;
+
+            }
+            else if (i==4){
+                accountSummary += "Account Balance (EUR) : " + Double.toString(balance) + "\n" ;
+
+            }
+            else if (i==5){
+                accountSummary += "Account Balance (USD) : " + Double.toString(balance) + "\n" ;
+
+            }
+            i=i+1;
         }
         return accountSummary;
     }

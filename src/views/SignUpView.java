@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
 public class SignUpView extends JFrame implements ActionListener {
-    private final JFrame frame = new JFrame("frame");
+    private final JFrame frame = new JFrame("Bank");
     private final Container container = new Container();
     private final JButton signUpButton = new JButton("SignUp");
     private final JLabel userLabel = new JLabel("USERNAME");

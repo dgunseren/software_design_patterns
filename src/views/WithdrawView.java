@@ -13,7 +13,7 @@ import java.awt.event.WindowEvent;
 
 public class WithdrawView extends JFrame implements ActionListener {
     private Customer customer;
-    private final JFrame frame = new JFrame("frame");
+    private final JFrame frame = new JFrame("Bank");
     private final Container container = new Container();
     private final JButton withdrawButton = new JButton("WITHDRAW");
     private final JButton backButton = new JButton("BACK");

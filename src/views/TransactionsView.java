@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 
 public class TransactionsView extends JFrame implements ActionListener {
     private final Customer customer;
-    private final JFrame frame = new JFrame("frame");
+    private final JFrame frame = new JFrame("Bank");
     private final Container container = new Container();
     private final JButton fastTransferButton = new JButton("FAST TRANSFER");
     private final JButton bulkTransferButton = new JButton("BULK TRANSFER");
@@ -66,7 +66,7 @@ public class TransactionsView extends JFrame implements ActionListener {
             int amount = Integer.parseInt(amountField.getText());
             TransactionsController controller = new TransactionsController(customer, this);
             if(controller.handleFastTransfer(to, amount)) {
-                JOptionPane.showMessageDialog(this, "FAST TRANSACTION SENT.");
+                JOptionPane.showMessageDialog(this, "TRANSACTION SENT.");
             } else {
                 JOptionPane.showMessageDialog(this, "TRANSACTION FAILED.");
             }
@@ -76,7 +76,7 @@ public class TransactionsView extends JFrame implements ActionListener {
             int amount = Integer.parseInt(amountField.getText());
             TransactionsController controller = new TransactionsController(customer, this);
             if(controller.handleBulkTransfer(to, amount)){
-                JOptionPane.showMessageDialog(this, "FAST TRANSACTION SENT.");
+                JOptionPane.showMessageDialog(this, "TRANSACTION SENT.");
             }else {
                 JOptionPane.showMessageDialog(this, "TRANSACTION FAILED.");
             }

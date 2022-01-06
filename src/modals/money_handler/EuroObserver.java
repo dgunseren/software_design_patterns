@@ -3,7 +3,7 @@ package modals.money_handler;
 import modals.abstracts.Observer;
 
 public class EuroObserver extends Observer {
-    private double rate = 0.06523157208;
+    private double rate = 0.06523;
     public EuroObserver(Capital capital) {
         this.capital = capital;
         this.capital.attach(this);

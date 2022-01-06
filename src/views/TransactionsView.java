@@ -1,5 +1,6 @@
 package views;
 
+import controllers.MainMenuController;
 import controllers.TransactionsController;
 import modals.Customer;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 public class TransactionsView extends JFrame implements ActionListener {
     private final Customer customer;
@@ -14,6 +16,7 @@ public class TransactionsView extends JFrame implements ActionListener {
     private final Container container = new Container();
     private final JButton fastTransferButton = new JButton("FAST TRANSFER");
     private final JButton bulkTransferButton = new JButton("BULK TRANSFER");
+    private final JButton backButton = new JButton("BACK");
     private final JLabel toLabel = new JLabel("TO:");
     private final JLabel amountLabel = new JLabel("AMOUNT:");
     private final JTextField toField = new JTextField();
@@ -36,6 +39,7 @@ public class TransactionsView extends JFrame implements ActionListener {
         container.add(amountField);
         container.add(fastTransferButton);
         container.add(bulkTransferButton);
+        container.add(backButton);
     }
 
     private void setLocationAndSize() {
@@ -45,11 +49,13 @@ public class TransactionsView extends JFrame implements ActionListener {
         amountField.setBounds(150, 270, 150, 30);
         fastTransferButton.setBounds(50, 310, 250, 30);
         bulkTransferButton.setBounds(50,340, 250, 30);
+        backButton.setBounds(50,370, 250, 30);
     }
 
     private void addActionListenersToButtons() {
         fastTransferButton.addActionListener(this);
         bulkTransferButton.addActionListener(this);
+        backButton.addActionListener(this);
     }
 
     @Override
@@ -71,6 +77,10 @@ public class TransactionsView extends JFrame implements ActionListener {
             }else {
                 JOptionPane.showMessageDialog(this, "TRANSACTION FAILED.");
             }
+        }
+        else if(e.getSource() == backButton) {
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            new MainMenuView(customer);
         }
     }
 }

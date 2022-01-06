@@ -2,6 +2,7 @@ package views;
 
 import controllers.MainMenuController;
 import controllers.TransactionsController;
+import controllers.WithdrawController;
 import modals.Customer;
 
 import javax.swing.*;
@@ -83,11 +84,11 @@ public class MainMenuView extends JFrame implements ActionListener {
         }
         else if (e.getSource() == transfer_button) {
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            TransactionsView transactionsView = new TransactionsView(customer);
-            new TransactionsController(customer, transactionsView);
+            new TransactionsView(customer);
         }
         else if (e.getSource() == withdraw) {
-
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            new WithdrawView(customer);
         }
     }
 }

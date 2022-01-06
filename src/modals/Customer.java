@@ -39,10 +39,10 @@ public class Customer {
     public String getAddress() { return this.address; }
 
     public double getAccountBalance() { return this.accountBalance; }
-    public void setAccountBalance(double accountBalance) throws SQLException {
+    public void setAccountBalance(double accountBalance) {
         this.accountBalance = accountBalance;
-        Connection conn = DBConnection.DB_CONN.getDBConnection();
         try {
+            Connection conn = DBConnection.DB_CONN.getDBConnection();
             PreparedStatement statement = conn.prepareStatement(UPDATE_ACCOUNT_BALANCE_QUERY);
             statement.setDouble(1, accountBalance);
             statement.setString(2,email);

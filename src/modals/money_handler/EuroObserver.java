@@ -13,4 +13,6 @@ public class EuroObserver extends Observer {
     public void update() {
         System.out.println( "In Euros: " + capital.getAmount() * rate );
     }
+
+    public double getEuroAmount() { return capital.getAmount() * rate; }
 }

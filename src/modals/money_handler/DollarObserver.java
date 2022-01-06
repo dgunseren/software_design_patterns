@@ -13,4 +13,6 @@ public class DollarObserver extends Observer {
     public void update() {
         System.out.println( "In USD: " + capital.getAmount() * rate );
     }
+
+    public double getDollarAmount() { return capital.getAmount() * rate; }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class Account {
 
     VisitableAccount[] accounts;
-    double[] accountSummary = new double[4];
+    double[] accountSummary = new double[6];
 
     public Account() {
         accounts = new VisitableAccount[] {

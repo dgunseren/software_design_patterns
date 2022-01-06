@@ -1,15 +1,18 @@
 package views;
 
 import controllers.MainMenuController;
+import controllers.TransactionsController;
 import modals.Customer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class MainMenuView extends JFrame implements ActionListener {
+    private final Customer customer;
     private String accountSummary = "";
     private final JFrame frame = new JFrame("frame");
     private final Container container = getContentPane();
@@ -20,7 +23,8 @@ public class MainMenuView extends JFrame implements ActionListener {
     private final JButton transfer_button = new JButton("Monetary Transactions");
     private final JButton withdraw = new JButton("Withdraw Cash");
 
-    MainMenuView() {
+    MainMenuView(Customer customer) {
+        this.customer = customer;
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -78,7 +82,9 @@ public class MainMenuView extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, accountSummary);
         }
         else if (e.getSource() == transfer_button) {
-
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            TransactionsView transactionsView = new TransactionsView(customer);
+            new TransactionsController(customer, transactionsView);
         }
         else if (e.getSource() == withdraw) {
 

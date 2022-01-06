@@ -19,7 +19,7 @@ public class Transaction extends Transactions {
     }
 
     @Override
-    public boolean transfer() throws SQLException {
+    public boolean transfer() {
         return transactionAPI.moneyTransfer(customer, to, amount);
     }
 }

@@ -11,5 +11,5 @@ public abstract class Transactions {
         this.transactionAPI = transactionAPI;
     }
 
-    public abstract boolean transfer() throws SQLException;
+    public abstract boolean transfer();
 }

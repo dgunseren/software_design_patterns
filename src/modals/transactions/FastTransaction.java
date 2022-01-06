@@ -20,13 +20,13 @@ public class FastTransaction implements TransactionAPI {
     }
 
     @Override
-    public boolean moneyTransfer(Customer customer, String to, double amount) throws SQLException {
+    public boolean moneyTransfer(Customer customer, String to, double amount) {
         if(amount > 1000) {
             System.out.println("FAST TRANSACTION FAILED. CANNOT PASS 1000$ LIMIT.");
             return false;
         }
-        Connection conn = DBConnection.DB_CONN.getDBConnection();
         try {
+            Connection conn = DBConnection.DB_CONN.getDBConnection();
             double senderAmount = customer.getAccountBalance();
 
             if(amount > senderAmount) {

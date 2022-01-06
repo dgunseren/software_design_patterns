@@ -65,7 +65,7 @@ public class LoginView extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Authentication FAILED.");
             } else {
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-                MainMenuView mainMenuView = new MainMenuView();
+                MainMenuView mainMenuView = new MainMenuView(customer);
                 new MainMenuController(customer, mainMenuView);
             }
         }

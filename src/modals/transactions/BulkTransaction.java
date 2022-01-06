@@ -20,9 +20,9 @@ public class BulkTransaction implements TransactionAPI {
     }
 
     @Override
-    public boolean moneyTransfer(Customer customer, String to, double amount) throws SQLException {
-        Connection conn = DBConnection.DB_CONN.getDBConnection();
+    public boolean moneyTransfer(Customer customer, String to, double amount) {
         try {
+            Connection conn = DBConnection.DB_CONN.getDBConnection();
             double senderAmount = customer.getAccountBalance();
 
             if(amount > senderAmount) {
